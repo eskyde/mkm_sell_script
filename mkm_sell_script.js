@@ -1,8 +1,7 @@
 // ==UserScript==
 // @name         MKM helper script
-// @namespace    eskyde
 // @version      0.2
-// @description  try to take over the world!
+// @description  Helperscript for www.cardmarket.com to sell single cards
 // @author       eskyde
 // @match        https://www.cardmarket.com/de/Magic/Products/Einzelkarten*
 // @grant        none
@@ -13,8 +12,7 @@
 
     let gConfigMarkup = `
         <div id="tt-sell-options" class="form-group row">
-            <label class="col-form-label col-form-label-sm col col-md-5 col-xl-4">Verkaufsoptionen
-            </label>
+            <label class="col-form-label col-form-label-sm col col-md-5 col-xl-4">Verkaufsoptionen</label>
 
             <div class="col col-md-7 col-xl-8">
                 <select name="tt-options" size="1" id="tt-options" class="form-control form-control-sm">
@@ -73,16 +71,16 @@
     // activate on price label click
     $('#tt-get-price').on('click', function () {
 
-        let $sellForm = $sellTab.find('form');
+        const $sellForm = $sellTab.find('form');
 
-        let lLanguage = LANGUAGE_MAPPING[$sellForm.find('#language option:selected').val()];
+        const lLanguage = LANGUAGE_MAPPING[$sellForm.find('#language option:selected').val()];
 
         if (lLanguage == null) {
             alert('Unknown Language: ' + lLanguage);
             return;
         }
 
-        let lCondition = CONDITION_MAPPING[$sellForm.find('#condition option:selected').val()];
+        const lCondition = CONDITION_MAPPING[$sellForm.find('#condition option:selected').val()];
 
         if (lCondition == null) {
             alert('Unknown Condition: ' + lCondition);
@@ -95,7 +93,7 @@
         let $priceBox = null;
         let $productPrice = null;
 
-        if (sellOption === '1') { // Option: from Germany
+        if (sellOption === '1') { // Option: Take price from selling-location Germany
 
             // table row element variables
             let $rowElement = null;
